@@ -1,0 +1,23 @@
+{
+  "name": "remove-files",
+  "version": "1.0.0",
+  "description": "Removes files after running conversion tool.",
+  "main": "removeFiles.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/byuitechops/remove-files.git"
+  },
+  "author": "Zachary Williams",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/byuitechops/remove-files/issues"
+  },
+  "homepage": "https://github.com/byuitechops/remove-files#readme",
+  "dependencies": {
+    "async": "^2.5.0",
+    "rimraf": "^2.6.2"
+  }
+}
