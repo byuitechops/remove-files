@@ -8,8 +8,6 @@ const rimraf = require('rimraf');
 const asyncLib = require('async');
 
 module.exports = (course, stepCallback) => {
-    /* Add module report */
-    course.addModuleReport('remove-files');
 
     /* If not wanting to keep files */
     if (!course.settings.keepFiles) {
@@ -18,9 +16,9 @@ module.exports = (course, stepCallback) => {
             (callback) => {
                 rimraf(course.info.originalFilepath, err => {
                     if (err) {
-                        course.throwErr('remove-files', err);
+                        course.error(err);
                     } else {
-                        course.success('remove-files', 'Original course zip successfully removed');
+                        course.message('Original course zip was successfully removed');
                     }
                     callback();
                 });
@@ -29,9 +27,9 @@ module.exports = (course, stepCallback) => {
             (callback) => {
                 rimraf(course.info.unzippedFilepath, err => {
                     if (err) {
-                        course.throwErr('remove-files', err);
+                        course.error(err);
                     } else {
-                        course.success('remove-files', 'Unzipped original course successfully removed');
+                        course.message('Unzipped original course was successfully removed');
                     }
                     callback();
                 });
@@ -40,9 +38,9 @@ module.exports = (course, stepCallback) => {
             (callback) => {
                 rimraf(course.info.altUnzippedFilepath, err => {
                     if (err) {
-                        course.throwErr('remove-files', err);
+                        course.error(err);
                     } else {
-                        course.success('remove-files', 'Unzipped altered course successfully removed');
+                        course.message('Unzipped altered course successfully removed');
                     }
                     callback();
                 });
@@ -51,9 +49,9 @@ module.exports = (course, stepCallback) => {
             (callback) => {
                 rimraf(course.info.zippedFilepath, err => {
                     if (err) {
-                        course.throwErr('remove-files', err);
+                        course.error(err);
                     } else {
-                        course.success('remove-files', 'Generated zip successfully removed');
+                        course.message('Generated zip successfully removed');
                     }
                     callback();
                 });
