@@ -14,7 +14,7 @@ module.exports = (course, stepCallback) => {
 
         asyncLib.waterfall([
             (callback) => {
-                rimraf(course.info.originalFilepath, err => {
+                rimraf(course.info.originalZipPath, err => {
                     if (err) {
                         course.error(err);
                     } else {
@@ -25,7 +25,7 @@ module.exports = (course, stepCallback) => {
             }
             ,
             (callback) => {
-                rimraf(course.info.unzippedFilepath, err => {
+                rimraf(course.info.unzippedPath, err => {
                     if (err) {
                         course.error(err);
                     } else {
@@ -36,7 +36,7 @@ module.exports = (course, stepCallback) => {
             }
             ,
             (callback) => {
-                rimraf(course.info.altUnzippedFilepath, err => {
+                rimraf(course.info.processedPath, err => {
                     if (err) {
                         course.error(err);
                     } else {
@@ -47,7 +47,7 @@ module.exports = (course, stepCallback) => {
             }
             ,
             (callback) => {
-                rimraf(course.info.zippedFilepath, err => {
+                rimraf(course.info.uploadZipPath, err => {
                     if (err) {
                         course.error(err);
                     } else {
