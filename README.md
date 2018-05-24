@@ -19,12 +19,7 @@ npm install remove-files
 This should always run last, if possible, so it doesn't delete needed files.
 
 ## Options
-
-If there are options that need to be set before the module runs, include them in a table, like this:
-
-| Option | Values | Description |
-|--------|--------|-------------|
-|Keep Files| true/false | If true, files are not deleted. This module is skipped.|
+No options available.
 
 ## Outputs
 
