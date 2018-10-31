@@ -24,7 +24,7 @@ module.exports = (course, stepCallback) => {
             var tempFile = files.find(file => file.filename === course.info.tempFile);
     
             if (tempFile == undefined) {
-                course.warn(`Unable to find Temp file with name: ${course.info.tempFile}`);
+                course.warning(`Unable to find Temp file with name: ${course.info.tempFile}`);
                 stepCallback(null, course);
                 return;
             }
