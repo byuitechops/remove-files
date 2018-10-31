@@ -3,8 +3,49 @@
 /* Put dependencies here */
 const rimraf = require('rimraf');
 const asyncLib = require('async');
+const canvas = require('canvas-wrapper');
 
 module.exports = (course, stepCallback) => {
+
+    function deleteTempFolder() {
+        if (course.info.tempFile == undefined) {
+            stepCallback(null, course);
+            return;
+        }
+    
+        // TODO are the logging methods still broken?
+        
+        /* get all files */
+        canvas.get(`/api/v1/courses/${course.info.canvasOU}/files`, (getErr, files) => {
+            if (getErr) {
+                course.error(getErr);
+                stepCallback(null, course);
+                return;
+            }
+            /* filter to the temp file created in course-has-content */
+            var tempFile = files.find(file => file.filename === course.info.tempFile);
+    
+            if (tempFile == undefined) {
+                course.warn(`Unable to find Temp file with name: ${course.info.tempFile}`);
+                stepCallback(null, course);
+                return;
+            }
+    
+            /* delete the file */
+            canvas.delete(`/api/v1/files/${tempFile.id}`, (deleteErr) => {
+                if (deleteErr) {
+                    course.error(getErr);
+                    stepCallback(null, course);
+                    return;
+                }
+    
+                /* all done */
+                course.message(`deleted temp file: ${course.info.tempFile}`);
+                stepCallback(null, course);
+    
+            });
+        });
+    }
 
     function deleteFolder(folder, callback) {
         if (folder == undefined || folder === 'Unspecified') {
@@ -32,6 +73,7 @@ module.exports = (course, stepCallback) => {
     ];
         
     asyncLib.eachSeries(foldersToRemove, deleteFolder, () => {
-        stepCallback(null, course);
+        deleteTempFolder();
+        // stepCallback(null, course);
     });
 };
