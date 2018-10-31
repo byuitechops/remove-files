@@ -13,8 +13,6 @@ module.exports = (course, stepCallback) => {
             return;
         }
     
-        // TODO are the logging methods still broken?
-        
         /* get all files */
         canvas.get(`/api/v1/courses/${course.info.canvasOU}/files`, (getErr, files) => {
             if (getErr) {
