@@ -21,7 +21,7 @@ module.exports = (course, stepCallback) => {
                 return;
             }
             /* filter to the temp file created in course-has-content */
-            var tempFile = files.find(file => file.filename === course.info.tempFile);
+            var tempFile = files.find(file => file.display_name === course.info.tempFile);
     
             if (tempFile == undefined) {
                 course.warning(`Unable to find Temp file with name: ${course.info.tempFile}`);
